@@ -7,10 +7,10 @@ and using different design patterns.
 
 To do list: 
 - finish the MineCountLabel class
-- implement the win condition - right now the game stop where you win or lose
+- implement the win condition - right now the game stop when you win or lose
 - finish the GUI component
 - add comment where appropriate
-- add in static/final keyword where possible
-- insert assert statement where appropriate to ensure that the input to a function is valid
+- using static/final keyword where appropriate 
+- using assert statement where appropriate to ensure that the input to a function is valid
 - refactor
 
