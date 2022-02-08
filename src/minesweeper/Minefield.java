@@ -2,16 +2,16 @@ package minesweeper;
 
 import java.util.*;
 
-public class Minefield {
+public class Minefield extends Observable {
     private final int NROWS = 16;
     private final int NCOLS = 30;
     private final int initialNumOfMines = 99;
-    private Square[][] squares;
+    private final Game game;
+    private final Square[][] squares;
     private int mineCount; 
     private int numOfEmptySquaresLeft;
     private final int[][] adjDirs = new int[][] {{-1, -1}, {-1, 0}, {-1, 1},
             {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-    private Game game;
 
     public Minefield(Game game) {
         squares = new Square[NROWS][NCOLS];
@@ -21,9 +21,12 @@ public class Minefield {
             }
         }
         this.game = game;
-        mineCount = initialNumOfMines; 
+        this.mineCount = initialNumOfMines; 
         numOfEmptySquaresLeft = NROWS * NCOLS - initialNumOfMines;
     }
+    public int getNRows() { return NROWS; }
+    public int getNCols() { return NCOLS; }
+	public int getMineCount() { return this.mineCount; }
     public void assignSquaresWithMine(int[] startPos) {
         Random rand = new Random();
         for (int numMinesAssigned = 0; numMinesAssigned < mineCount;) {
@@ -36,6 +39,8 @@ public class Minefield {
         }
     }
     public void calcNumOfAdjSquaresWithMine() {
+		// assign each square with a number that indicates how many adjacent squares 
+		// has a mine
         for (int row = 0; row < NROWS; row++) {
             for (int col = 0; col < NCOLS; col++) {
                 if (squares[row][col].hasMine()) continue;
@@ -51,13 +56,11 @@ public class Minefield {
             }
         }
     }
-    public int getNRows() { return NROWS; }
-    public int getNCols() { return NCOLS; }
     public ArrayList<Square> revealSquare(int[] pos) {
         if (!game.hasStarted()) game.start(pos);
         Square squareClicked = squares[pos[0]][pos[1]];
         if (squareClicked.hasMine()) {
-            // click on a mine and its game over - reveal all squares with mine
+            // click on a mine and its game over - reveal all the squares with mine
             game.over();
             return findAllSquaresWithMine();
         }
@@ -105,11 +108,22 @@ public class Minefield {
             int colAdjSq = col + d[1]; 
             if ((rowAdjSq < 0) || (rowAdjSq >= NROWS) || (colAdjSq < 0) || (colAdjSq >= NCOLS)) continue;
             if (visited[rowAdjSq][colAdjSq]) continue; // this square has already been revealed 
+            if (squares[rowAdjSq][colAdjSq].isFlagged()) continue; // this square has already been flagged 
             findSquaresWithNoAdjMines(new int[] {rowAdjSq, colAdjSq}, adjSquaresWithNoAdjMines, visited);
        }
     }
-    public void toggleSquareFlagStatus(int[] pos) { squares[pos[0]][pos[1]].toggleFlaggedStatus(); }
     public boolean canSquareBeRevealed(int[] pos) { return squares[pos[0]][pos[1]].canBeRevealed(); }
     public boolean isSquareFlagged(int[] pos) { return squares[pos[0]][pos[1]].isFlagged(); }
     public boolean isSquareRevealed(int[] pos) { return squares[pos[0]][pos[1]].isRevealed(); }
+    public void toggleSquareFlagStatus(int[] pos) { 
+		if (isSquareRevealed(pos)) return;
+		squares[pos[0]][pos[1]].toggleFlaggedStatus(); 
+		if (squares[pos[0]][pos[1]].isFlagged()) mineCount--;
+		else mineCount++; // the square was unflagged
+		updateObservers(); // update the mineCount value in the mineCount label
+	}
+	private void updateObservers() {
+		setChanged();
+		notifyObservers(mineCount);
+	}
 }

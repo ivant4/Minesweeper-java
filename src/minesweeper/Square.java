@@ -9,7 +9,7 @@ public class Square {
     private boolean hasMine = false;
     private SquareState squareState;
     private int numOfAdjSquaresWithMine;
-    private int row, col; 
+    private final int row, col; 
 
     public Square(int row, int col) {
         this.row = row;
@@ -26,7 +26,6 @@ public class Square {
     public boolean canBeRevealed() { return squareState == SquareState.COVERED; }
     public void reveal() { squareState = SquareState.REVEALED; }
     public void toggleFlaggedStatus() { 
-        if (squareState == SquareState.REVEALED) return;
         if (squareState == SquareState.COVERED) squareState = SquareState.FLAGGED; // flag the square
         else squareState = SquareState.COVERED; // unflag the square
     }

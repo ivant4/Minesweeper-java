@@ -12,10 +12,10 @@ public class Game {
         RUNNING, 
         OVER
     }
-    private Timer timer;
-    private Minefield minefield;
-    private GameFrame gameFrame;
     private GameState gameState;
+    private final GameFrame gameFrame;
+    private Minefield minefield;
+    private final Timer timer;
 
     public Game() {
         timer = new Timer();

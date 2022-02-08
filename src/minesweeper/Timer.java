@@ -46,10 +46,4 @@ public class Timer extends Observable {
         setChanged();
         notifyObservers(elapsedTime);
     }
-    public static void main(String[] args)
-    {
-
-    }
- 
-        
 }

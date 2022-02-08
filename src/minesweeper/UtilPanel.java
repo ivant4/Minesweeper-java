@@ -5,8 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class UtilPanel extends JPanel {
-    private TimerLabel timerLabel;
-    private ResetButton resetButton;
+    private final TimerLabel timerLabel;
+    private final MineCountLabel mineCountLabel;
+    private final ResetButton resetButton;
 
     public UtilPanel(Game game, int WIDTH, int HEIGHT) {
         super();
@@ -16,6 +17,8 @@ public class UtilPanel extends JPanel {
         this.add(timerLabel);
         resetButton = new ResetButton(game);
         this.add(resetButton);
+        mineCountLabel = new MineCountLabel(game);
+        this.add(mineCountLabel);
     }
     public static void main(String[] args) {
     }
