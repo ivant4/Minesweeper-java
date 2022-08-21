@@ -1,7 +1,7 @@
 package minesweeper;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import java.awt.Dimension;
 
 public class SquareButton extends JButton {
     private int[] position;

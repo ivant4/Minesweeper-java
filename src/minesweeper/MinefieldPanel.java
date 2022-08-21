@@ -1,8 +1,10 @@
 package minesweeper;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JPanel;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.*;
 public class MinefieldPanel extends JPanel implements MouseListener { // make this implements mouselistener
     private Minefield minefield;

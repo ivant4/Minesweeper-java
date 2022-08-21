@@ -3,7 +3,6 @@ package minesweeper;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.*;
 
 public class GameFrame extends JFrame{
     private UtilPanel utilPanel;
@@ -14,7 +13,7 @@ public class GameFrame extends JFrame{
         super();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // when this closes, this closes the event dispatch thread
-        this.setTitle("insert title");
+        this.setTitle("Minesweeper");
         this.setResizable(false);
         WIDTH = 915;
         HEIGHT = 600;

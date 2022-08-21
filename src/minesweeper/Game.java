@@ -32,7 +32,7 @@ public class Game {
     public boolean hasStarted() { return gameState != GameState.NOT_RUNNING; }
     public Minefield getMinefield() {return minefield; }
     public Timer getTimer() {return timer; }
-    public void over() { // game is over
+    public void setGameOver() { // game is over
         this.gameState = GameState.OVER;
         timer.stop(); 
     }
@@ -44,7 +44,4 @@ public class Game {
 
     }
     public boolean isOver() { return gameState == GameState.OVER; }
-    public static void main(String[] args) {
-        Game game = new Game();
-    }
 }

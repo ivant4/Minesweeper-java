@@ -11,7 +11,7 @@ public class UtilPanel extends JPanel {
 
     public UtilPanel(Game game, int WIDTH, int HEIGHT) {
         super();
-        this.setBackground(Color.yellow);
+        this.setBackground(Color.blue);
         this.setBounds(0, 4 * HEIGHT / 5, WIDTH, HEIGHT / 5);
         timerLabel = new TimerLabel(game);
         this.add(timerLabel);

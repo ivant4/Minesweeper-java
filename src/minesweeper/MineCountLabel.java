@@ -1,7 +1,8 @@
 package minesweeper;
 
-import javax.swing.*;
-import java.util.*;
+import javax.swing.JLabel;
+import java.util.Observer;
+import java.util.Observable;
 
 public class MineCountLabel extends JLabel implements Observer {
     public MineCountLabel(Game game) {
@@ -13,6 +14,4 @@ public class MineCountLabel extends JLabel implements Observer {
     public void update(Observable o, Object arg) {
         this.setText(Integer.toString((Integer) arg));
     }
-
-
 }

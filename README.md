@@ -6,11 +6,7 @@ The goal of this project is to help me practise object-oriented programming conc
 and using different design patterns.  
 
 To do list: 
-- finish the MineCountLabel class
 - implement the win condition - right now the game stop when you win or lose
 - finish the GUI component
-- add comment where appropriate
-- using static/final keyword where appropriate 
-- using assert statement where appropriate to ensure that the input to a function is valid
 - refactor
-
+- watch out for memory leak when the game resets!

@@ -1,6 +1,8 @@
 package minesweeper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Random;
 
 public class Minefield extends Observable {
     private final int NROWS = 16;
@@ -61,19 +63,19 @@ public class Minefield extends Observable {
         Square squareClicked = squares[pos[0]][pos[1]];
         if (squareClicked.hasMine()) {
             // click on a mine and its game over - reveal all the squares with mine
-            game.over();
+            game.setGameOver();
             return findAllSquaresWithMine();
         }
         ArrayList<Square> squaresToReveal = new ArrayList<Square>();
         if (squareClicked.getNumOfAdjSquaresWithMine() == 0) {
             // the square clicked has no adjacent squares with mine
-            // find all adjacent squares that always has no adjacent squares with mines 
+            // find all adjacent squares that also has no adjacent squares with mines 
             squaresToReveal = findAdjSquaresWithNoAdjMines(pos);
         } else { // squares has one or more adjacent mines.
             numOfEmptySquaresLeft--;
             squaresToReveal.add(squareClicked);
         }
-        if (numOfEmptySquaresLeft <= 0) game.over();
+        if (numOfEmptySquaresLeft <= 0) game.setGameOver();
         return squaresToReveal;
     } 
     private ArrayList<Square> findAllSquaresWithMine() { 
