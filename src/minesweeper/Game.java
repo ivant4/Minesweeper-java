@@ -6,6 +6,9 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 
+/*
+ * Represent the game state and handles the change in game states
+ */
 public class Game {
     private enum GameState {
         NOT_RUNNING, 
@@ -13,14 +16,14 @@ public class Game {
         OVER
     }
     private GameState gameState;
-    private final GameFrame gameFrame;
+    private final AppFrame appFrame;
     private Minefield minefield;
     private final Timer timer;
 
     public Game() {
         timer = new Timer();
         minefield = new Minefield(this);
-        gameFrame = new GameFrame(this);
+        appFrame = new AppFrame(this);
         this.gameState = GameState.NOT_RUNNING;
     }
     public void start(int[] startPos) { 
@@ -40,7 +43,7 @@ public class Game {
         this.gameState = GameState.NOT_RUNNING;
         timer.reset();
         minefield = new Minefield(this);
-        gameFrame.reset(this);
+        appFrame.reset(this);
 
     }
     public boolean isOver() { return gameState == GameState.OVER; }

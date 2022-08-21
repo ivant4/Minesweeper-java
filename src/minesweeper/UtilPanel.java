@@ -1,8 +1,6 @@
 package minesweeper;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JPanel;
 
 public class UtilPanel extends JPanel {
     private final TimerLabel timerLabel;
@@ -11,7 +9,7 @@ public class UtilPanel extends JPanel {
 
     public UtilPanel(Game game, int WIDTH, int HEIGHT) {
         super();
-        this.setBackground(Color.blue);
+        //this.setBackground(Color.blue);
         this.setBounds(0, 4 * HEIGHT / 5, WIDTH, HEIGHT / 5);
         timerLabel = new TimerLabel(game);
         this.add(timerLabel);
@@ -19,7 +17,5 @@ public class UtilPanel extends JPanel {
         this.add(resetButton);
         mineCountLabel = new MineCountLabel(game);
         this.add(mineCountLabel);
-    }
-    public static void main(String[] args) {
     }
 }

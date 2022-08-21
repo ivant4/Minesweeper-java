@@ -5,11 +5,14 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.*;
+import java.util.ArrayList;
+
 public class MinefieldPanel extends JPanel implements MouseListener { // make this implements mouselistener
     private Minefield minefield;
     private SquareButton[][] squareButtons;
     private Game game;
+	private final int BUTTON_WIDTH = 30;
+	private final int BUTTON_HEIGHT = 30;
     public MinefieldPanel(Game game, int frameWidth, int frameHeight) {
         super();
         this.game = game;
@@ -21,8 +24,18 @@ public class MinefieldPanel extends JPanel implements MouseListener { // make th
         squareButtons = new SquareButton[nrows][ncols];
         for (int row = 0; row < nrows; row++) {
             for (int col = 0; col < ncols; col++) {
-                squareButtons[row][col] = new SquareButton(row, col, 30, 30);
-                squareButtons[row][col].setBounds(col*30, row*30, 30, 30);
+                squareButtons[row][col] = new SquareButton(
+					row, 
+					col, 
+					BUTTON_WIDTH,
+					BUTTON_HEIGHT
+				);
+                squareButtons[row][col].setBounds(
+					col*BUTTON_WIDTH, 
+					row*BUTTON_HEIGHT, 
+					BUTTON_WIDTH, 
+					BUTTON_HEIGHT
+				);
                 squareButtons[row][col].addMouseListener(this);
                 this.add(squareButtons[row][col]); 
             }
@@ -36,9 +49,8 @@ public class MinefieldPanel extends JPanel implements MouseListener { // make th
         if (game.isOver()) return;
         SquareButton source = (SquareButton) e.getSource();
         int[] sourcePos = source.getPosition();
-        System.out.println(Arrays.toString(source.getPosition()));
         if (e.getButton() == 1) { leftClicked(sourcePos); }
-        else if (e.getButton() == 3) { rightClicked(source); }
+        else if (e.getButton() == 3) { rightClicked(source, sourcePos); }
         
     }
     private void leftClicked(int[] sourcePos) {
@@ -62,8 +74,7 @@ public class MinefieldPanel extends JPanel implements MouseListener { // make th
             currSqrButt.setEnabled(false);
         }
     }
-    private void rightClicked(SquareButton source) {
-        int[] sourcePos = source.getPosition();
+    private void rightClicked(SquareButton source, int[] sourcePos) {
         minefield.toggleSquareFlagStatus(sourcePos);
         if (minefield.isSquareRevealed(sourcePos)) return;
         if (minefield.isSquareFlagged(sourcePos)) source.setText("O"); // display a flag 

@@ -23,7 +23,6 @@ public class Timer extends Observable {
             public void run() {
                 while (isTiming) {
                     elapsedTime = (double) ((System.currentTimeMillis() - startTime) / 1000);
-                    System.out.println(elapsedTime);
                     updateObservers();
                     try {
                         Thread.sleep(1000); 

@@ -4,19 +4,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-public class GameFrame extends JFrame{
+public class AppFrame extends JFrame{
     private UtilPanel utilPanel;
     private MinefieldPanel minefieldPanel;
-    private int WIDTH, HEIGHT;
+    private int WIDTH = 915;
+    private int HEIGHT = 600;
 
-    public GameFrame(Game game) {
+    public AppFrame(Game game) {
         super();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // when this closes, this closes the event dispatch thread
         this.setTitle("Minesweeper");
         this.setResizable(false);
-        WIDTH = 915;
-        HEIGHT = 600;
         this.setSize(WIDTH, HEIGHT);
         init(game);
     }
