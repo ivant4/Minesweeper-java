@@ -4,9 +4,3 @@ The goal of Minesweeper is to find on all the squares without a mine in the shor
 
 The goal of this project is to help me practise object-oriented programming concept, implementing a graphical user interface 
 and using different design patterns.  
-
-To do list: 
-- implement the win condition - right now the game stop when you win or lose
-- finish the GUI component
-- refactor
-- watch out for memory leak when the game resets!
